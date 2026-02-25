@@ -404,10 +404,65 @@ document.querySelectorAll('.clickable-window').forEach(win => {
 // ============================================
 //  TOUCH SUPPORT
 // ============================================
-let touchStartX = 0;
-wrapper.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-wrapper.addEventListener('touchmove',  e => {
-  const diff = touchStartX - e.touches[0].clientX;
-  wrapper.scrollLeft += diff * 0.5;
-  touchStartX = e.touches[0].clientX;
+// Uses a single tracked touch point. passive:false lets us call
+// preventDefault() to stop the browser doing its own scroll/zoom
+// which was the root cause of the violent shaking on iOS/Android.
+
+let touchStartX   = 0;
+let touchLastX    = 0;
+let touchVelX     = 0;   // pixels per frame momentum
+let touchActive   = false;
+let momentumRafId = null;
+
+function cancelMomentum() {
+  if (momentumRafId !== null) {
+    cancelAnimationFrame(momentumRafId);
+    momentumRafId = null;
+  }
+}
+
+function runMomentum() {
+  touchVelX *= 0.88;                      // friction
+  wrapper.scrollLeft += touchVelX;
+  if (Math.abs(touchVelX) > 0.5) {
+    momentumRafId = requestAnimationFrame(runMomentum);
+  } else {
+    momentumRafId = null;
+  }
+}
+
+wrapper.addEventListener('touchstart', e => {
+  cancelMomentum();
+  touchActive  = true;
+  touchStartX  = e.touches[0].clientX;
+  touchLastX   = touchStartX;
+  touchVelX    = 0;
+  cameraLocked = false;              // free the camera on touch
+}, { passive: true });
+
+wrapper.addEventListener('touchmove', e => {
+  if (!touchActive) return;
+  // Prevent the browser's default behaviour (scroll, zoom, bounce)
+  // so it doesn't compete with our handler — this is what caused the shake.
+  e.preventDefault();
+
+  const touch = e.touches[0];
+  const dx    = touchLastX - touch.clientX;
+
+  wrapper.scrollLeft += dx;
+  touchVelX  = dx;         // capture last-frame delta for momentum on release
+  touchLastX = touch.clientX;
+}, { passive: false });    // must be non-passive to call preventDefault
+
+wrapper.addEventListener('touchend', () => {
+  touchActive = false;
+  // Kick off momentum scroll
+  if (Math.abs(touchVelX) > 1) {
+    momentumRafId = requestAnimationFrame(runMomentum);
+  }
+}, { passive: true });
+
+wrapper.addEventListener('touchcancel', () => {
+  touchActive = false;
+  cancelMomentum();
 }, { passive: true });

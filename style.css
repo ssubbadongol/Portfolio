@@ -36,6 +36,11 @@ body {
   overflow: hidden;
   font-family: var(--pixel-font);
   cursor: default;
+  /* Prevent iOS rubber-band / overscroll bounce (root cause of violent shaking) */
+  overscroll-behavior: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 /* ============================================
@@ -90,6 +95,11 @@ body {
   overflow-x:scroll; overflow-y:hidden;
   scrollbar-width:thin;
   scrollbar-color:var(--warm-gold) #1a0808;
+  /* Let JS handle all touch events — prevents browser from competing */
+  touch-action: none;
+  overscroll-behavior: none;
+  /* Prevents iOS from doing its own momentum scroll on top of ours */
+  -webkit-overflow-scrolling: auto;
 }
 #world-wrapper::-webkit-scrollbar { height:10px; }
 #world-wrapper::-webkit-scrollbar-track { background:#1a0808; }

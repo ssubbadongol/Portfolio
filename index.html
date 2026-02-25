@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shashank Subba-Dongol | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <div class="loading-pixel-border">
+    <div class="loading-title">SHASHANK</div>
+    <div class="loading-sub">Loading Village...</div>
+    <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+  </div>
+</div>
+
+<!-- SCROLL HINT -->
+<div id="scroll-hint">
+  <span class="pixel-arrow">&#9654;</span> Scroll or use arrow keys to explore
+</div>
+
+<!-- FIXED HUD: hint + controls panel (top-right) -->
+<div id="hud-panel">
+  <div class="hud-section">
+    <span class="hud-icon">👆</span>
+    <span class="hud-title">INTERACT</span>
+    <div class="hud-line">Click glowing windows</div>
+    <div class="hud-line">or jump below them</div>
+    <div class="hud-line">to open info!</div>
+  </div>
+  <div class="hud-divider"></div>
+  <div class="hud-section">
+    <span class="hud-title">CONTROLS</span>
+    <div class="hud-control"><span class="hud-key">◄ ►</span><span class="hud-desc">Move knight</span></div>
+    <div class="hud-control"><span class="hud-key">▲ / SPC</span><span class="hud-desc">Jump to window</span></div>
+    <div class="hud-control"><span class="hud-key">▼</span><span class="hud-desc">Close window</span></div>
+    <div class="hud-control"><span class="hud-key">SCROLL</span><span class="hud-desc">Free scroll</span></div>
+  </div>
+</div>
+
+<!-- MAIN WORLD -->
+<div id="world-wrapper">
+  <div id="world">
+
+    <!-- ============ LAYER 0: SKY ============ -->
+    <div id="sky"></div>
+    <div id="stars-layer"></div>
+    <div id="moon"></div>
+
+    <!-- ============ LAYER 1: BACKGROUND (slowest parallax) ============ -->
+    <div id="bg-layer">
+      <!-- Distant misty mountains -->
+      <div class="bg-mountain" style="left:0px;"></div>
+      <!-- Background big trees (dark silhouette) -->
+      <div class="bg-tree" style="left:100px;--bgt-h:220px;"></div>
+      <div class="bg-tree" style="left:280px;--bgt-h:260px;"></div>
+      <div class="bg-tree" style="left:420px;--bgt-h:200px;"></div>
+      <div class="bg-tree" style="left:600px;--bgt-h:240px;"></div>
+      <div class="bg-tree" style="left:850px;--bgt-h:280px;"></div>
+      <div class="bg-tree" style="left:1050px;--bgt-h:220px;"></div>
+      <div class="bg-tree" style="left:1250px;--bgt-h:260px;"></div>
+      <div class="bg-tree" style="left:1500px;--bgt-h:300px;"></div>
+      <div class="bg-tree" style="left:1750px;--bgt-h:240px;"></div>
+      <div class="bg-tree" style="left:2000px;--bgt-h:270px;"></div>
+      <div class="bg-tree" style="left:2200px;--bgt-h:220px;"></div>
+      <div class="bg-tree" style="left:2450px;--bgt-h:260px;"></div>
+      <div class="bg-tree" style="left:2700px;--bgt-h:290px;"></div>
+      <div class="bg-tree" style="left:2950px;--bgt-h:230px;"></div>
+      <div class="bg-tree" style="left:3200px;--bgt-h:270px;"></div>
+      <div class="bg-tree" style="left:3450px;--bgt-h:250px;"></div>
+      <div class="bg-tree" style="left:3700px;--bgt-h:280px;"></div>
+      <div class="bg-tree" style="left:3950px;--bgt-h:230px;"></div>
+      <div class="bg-tree" style="left:4200px;--bgt-h:260px;"></div>
+      <!-- Clouds in background -->
+      <div class="cloud" style="top:55px;left:150px;animation-delay:0s;"></div>
+      <div class="cloud" style="top:40px;left:600px;animation-delay:4s;"></div>
+      <div class="cloud" style="top:70px;left:1200px;animation-delay:2s;"></div>
+      <div class="cloud" style="top:45px;left:1900px;animation-delay:7s;"></div>
+      <div class="cloud" style="top:60px;left:2600px;animation-delay:3s;"></div>
+      <div class="cloud" style="top:35px;left:3300px;animation-delay:9s;"></div>
+      <div class="cloud" style="top:65px;left:4000px;animation-delay:5s;"></div>
+    </div>
+
+    <!-- ============ LAYER 2: MIDGROUND (buildings, midground trees) ============ -->
+    <div id="mid-layer">
+
+      <!-- GROUND -->
+      <div id="ground-base"></div>
+      <div id="cobblestone"></div>
+      <!-- Ground edge highlight -->
+      <div id="ground-edge"></div>
+
+      <!-- ===== KNIGHT SCENE ===== -->
+      <div id="knight-scene">
+        <div id="flag-pole">
+          <div id="flag-banner">
+            <div id="flag-photo-slot">
+              <span class="flag-photo-text">[ Your<br/>Photo ]</span>
+            </div>
+            <div id="flag-name">SHASHANK<br/>SUBBA-DONGOL</div>
+            <div id="flag-subtitle">Graduate Computer Scientist</div>
+          </div>
+        </div>
+        <div id="knight-horse">
+          <div class="knight-sprite">
+            <div class="horse-body"></div>
+            <div class="horse-head"></div>
+            <div class="horse-leg leg1"></div>
+            <div class="horse-leg leg2"></div>
+            <div class="horse-leg leg3"></div>
+            <div class="horse-leg leg4"></div>
+            <div class="horse-tail"></div>
+            <div class="knight-torso"></div>
+            <div class="knight-head"></div>
+            <div class="knight-helmet"></div>
+            <div class="knight-lance"></div>
+            <div class="knight-shield"></div>
+          </div>
+        </div>
+        <div class="wooden-sign" style="left:510px;bottom:10px;">
+          <div class="sign-text">Welcome, Traveller!</div>
+          <div class="sign-subtext">Explore the village →</div>
+        </div>
+      </div>
+
+      <!-- Mid trees flanking knight -->
+      <div class="mid-tree" style="left:640px;--tc:#2a5a18;--tm:#3a7a28;--tl:#4a9a38;--tw:110px;--th:160px;"></div>
+      <div class="mid-tree" style="left:720px;--tc:#1e4a14;--tm:#2e6a22;--tl:#3e8a32;--tw:90px;--th:130px;"></div>
+
+      <!-- ===== LAMP POST ===== -->
+      <div class="lamp-post" style="left:820px;"></div>
+
+      <!-- Road sign before inn -->
+      <div class="road-sign" style="left:870px;">
+        <div class="road-sign-board">🏠 THE INN</div>
+      </div>
+
+      <!-- ===== BUILDING 1: ABOUT (Inn — half-timber, thatch) ===== -->
+      <div class="building" id="building-about" style="left:950px;">
+        <div class="building-body inn">
+          <!-- 3D side face -->
+          <div class="building-side inn-side"></div>
+          <div class="roof inn-roof thatch-roof">
+            <div class="roof-side inn-roof-side"></div>
+          </div>
+          <div class="wall-section wall-halftimber">
+            <div class="clickable-window" data-section="about" style="top:50px;left:35px;">
+              <div class="window-label">About Me</div>
+              <div class="window-light"></div>
+              <div class="win-reflection"></div>
+            </div>
+            <div class="clickable-window" data-section="about" style="top:50px;left:155px;">
+              <div class="window-label">About Me</div>
+              <div class="window-light"></div>
+              <div class="win-reflection"></div>
+            </div>
+            <div class="hanging-sign-wrap" style="right:30px;top:8px;">
+              <div class="hsign-arm"></div>
+              <div class="hsign-board">THE<br/>INN</div>
+            </div>
+            <div class="door arched inn-door"></div>
+          </div>
+          <div class="chimney" style="right:60px;"></div>
+          <div class="smoke-puff s1"></div>
+          <div class="smoke-puff s2"></div>
+        </div>
+      </div>
+
+      <!-- Trees between 1 & 2 -->
+      <div class="mid-tree" style="left:1390px;--tc:#2a5a18;--tm:#3a7a28;--tl:#4a9a38;--tw:120px;--th:170px;"></div>
+      <div class="lamp-post" style="left:1480px;"></div>
+      <div class="road-sign" style="left:1530px;">
+        <div class="road-sign-board">⚒️ THE FORGE</div>
+      </div>
+
+      <!-- ===== BUILDING 2: EXPERIENCE (Forge — dark stone) ===== -->
+      <div class="building" id="building-experience" style="left:1600px;">
+        <div class="building-body forge">
+          <div class="building-side forge-side"></div>
+          <div class="roof forge-roof tile-roof-red">
+            <div class="roof-side forge-roof-side"></div>
+          </div>
+          <div class="wall-section wall-darkstone">
+            <div class="clickable-window" data-section="experience" style="top:55px;left:40px;">
+              <div class="window-label">Experience</div>
+              <div class="window-light warm-glow"></div>
+              <div class="win-reflection"></div>
+            </div>
+            <div class="clickable-window" data-section="experience" style="top:55px;left:170px;">
+              <div class="window-label">Experience</div>
+              <div class="window-light warm-glow"></div>
+              <div class="win-reflection"></div>
+            </div>
+            <div class="hanging-sign-wrap" style="right:28px;top:8px;">
+              <div class="hsign-arm"></div>
+              <div class="hsign-board">⚒️<br/>FORGE</div>
+            </div>
+            <div class="door forge-door"></div>
+          </div>
+          <div class="chimney chimney-wide" style="right:55px;"></div>
+          <div class="smoke-puff s1"></div>
+          <div class="smoke-puff s2"></div>
+          <div class="smoke-puff s3"></div>
+        </div>
+      </div>
+
+      <!-- Trees between 2 & 3 -->
+      <div class="mid-tree" style="left:2050px;--tc:#1e4a14;--tm:#2e6a22;--tl:#3e8a32;--tw:130px;--th:180px;"></div>
+      <div class="mid-tree" style="left:2150px;--tc:#2a5a18;--tm:#3a7a28;--tl:#4a9a38;--tw:100px;--th:145px;"></div>
+      <div class="lamp-post" style="left:2250px;"></div>
+      <div class="wooden-sign" style="left:2300px;bottom:12px;">
+        <div class="sign-text">📚 Academy →</div>
+      </div>
+
+      <!-- ===== BUILDING 3: EDUCATION (Academy — stone, blue, towers) ===== -->
+      <div class="building" id="building-education" style="left:2380px;">
+        <div class="building-body academy">
+          <div class="building-side academy-side"></div>
+          <div class="roof academy-roof tile-roof-blue">
+            <div class="roof-side academy-roof-side"></div>
+          </div>
+          <div class="wall-section wall-stone">
+            <div class="clickable-window" data-section="education" style="top:60px;left:50px;">
+              <div class="window-label">Education</div>
+              <div class="window-light"></div>
+              <div class="win-reflection"></div>
+            </div>
+            <div class="clickable-window" data-section="certifications" style="top:60px;left:190px;">
+              <div class="window-label">Certs</div>
+              <div class="window-light"></div>
+              <div class="win-reflection"></div>
+            </div>
+            <div class="door arched academy-door"></div>
+          </div>
+          <div class="tower-left"></div>
+          <div class="tower-right"></div>
+        </div>
+      </div>
+
+      <!-- Trees between 3 & 4 -->
+      <div class="mid-tree" style="left:2860px;--tc:#2a5a18;--tm:#3a7a28;--tl:#4a9a38;--tw:110px;--th:160px;"></div>
+      <div class="lamp-post" style="left:2960px;"></div>
+      <div class="road-sign" style="left:3010px;">
+        <div class="road-sign-board">✨ WIZARD TOWER</div>
+      </div>
+
+      <!-- ===== BUILDING 4: SKILLS (Wizard Tower) ===== -->
+      <div class="building" id="building-skills" style="left:3080px;">
+        <div class="building-body wizard">
+          <div class="building-side wizard-side"></div>
+          <div class="roof wizard-roof tile-roof-purple">
+            <div class="roof-side wizard-roof-side"></div>
+          </div>
+          <div class="wall-section wall-darkstone">
+            <div class="clickable-window" data-section="skills" style="top:60px;left:42px;">
+              <div class="window-label">Skills</div>
+              <div class="window-light magic-glow"></div>
+              <div class="win-reflection"></div>
+            </div>
+            <div class="door wizard-door"></div>
+          </div>
+          <div class="magic-sparkle sp1"></div>
+          <div class="magic-sparkle sp2"></div>
+          <div class="magic-sparkle sp3"></div>
+        </div>
+      </div>
+
+      <!-- Trees between 4 & 5 -->
+      <div class="mid-tree" style="left:3360px;--tc:#1e4a14;--tm:#2e6a22;--tl:#3e8a32;--tw:120px;--th:170px;"></div>
+      <div class="mid-tree" style="left:3460px;--tc:#2a5a18;--tm:#3a7a28;--tl:#4a9a38;--tw:95px;--th:140px;"></div>
+      <div class="lamp-post" style="left:3560px;"></div>
+
+      <!-- ===== BUILDING 5: PROJECTS (Tavern — half-timber) ===== -->
+      <div class="building" id="building-projects" style="left:3620px;">
+        <div class="building-body tavern">
+          <div class="building-side tavern-side"></div>
+          <div class="roof tavern-roof thatch-roof">
+            <div class="roof-side tavern-roof-side"></div>
+          </div>
+          <div class="wall-section wall-halftimber">
+            <div class="clickable-window" data-section="projects" style="top:55px;left:40px;">
+              <div class="window-label">Projects</div>
+              <div class="window-light warm-glow"></div>
+              <div class="win-reflection"></div>
+            </div>
+            <div class="clickable-window" data-section="projects" style="top:55px;left:180px;">
+              <div class="window-label">Projects</div>
+              <div class="window-light warm-glow"></div>
+              <div class="win-reflection"></div>
+            </div>
+            <div class="hanging-sign-wrap" style="right:32px;top:8px;">
+              <div class="hsign-arm"></div>
+              <div class="hsign-board">🍺<br/>TAVERN</div>
+            </div>
+            <div class="door arched tavern-door"></div>
+          </div>
+          <div class="chimney" style="right:65px;"></div>
+          <div class="smoke-puff s1"></div>
+          <div class="smoke-puff s2"></div>
+        </div>
+      </div>
+
+      <!-- Trees between 5 & 6 -->
+      <div class="mid-tree" style="left:4130px;--tc:#2a5a18;--tm:#3a7a28;--tl:#4a9a38;--tw:110px;--th:155px;"></div>
+      <div class="lamp-post" style="left:4230px;"></div>
+      <div class="road-sign" style="left:4280px;">
+        <div class="road-sign-board">📬 POST OFFICE</div>
+      </div>
+
+      <!-- ===== BUILDING 6: CONTACT (Post Office — stone, green) ===== -->
+      <div class="building" id="building-contact" style="left:4350px;">
+        <div class="building-body postoffice">
+          <div class="building-side postoffice-side"></div>
+          <div class="roof postoffice-roof tile-roof-green">
+            <div class="roof-side postoffice-roof-side"></div>
+          </div>
+          <div class="wall-section wall-stone">
+            <div class="clickable-window" data-section="contact" style="top:55px;left:40px;">
+              <div class="window-label">Contact</div>
+              <div class="window-light warm-glow"></div>
+              <div class="win-reflection"></div>
+            </div>
+            <div class="hanging-sign-wrap" style="right:28px;top:8px;">
+              <div class="hsign-arm"></div>
+              <div class="hsign-board">📬 POST</div>
+            </div>
+            <div class="door arched postoffice-door"></div>
+          </div>
+          <div class="mailbox"></div>
+        </div>
+      </div>
+
+      <!-- End decor -->
+      <div class="mid-tree" style="left:4740px;--tc:#2a5a18;--tm:#3a7a28;--tl:#4a9a38;--tw:120px;--th:165px;"></div>
+      <div class="lamp-post" style="left:4840px;"></div>
+      <div class="wooden-sign" style="left:4880px;bottom:12px;">
+        <div class="sign-text">Journey's End</div>
+        <div class="sign-subtext">Thanks for visiting!</div>
+      </div>
+
+      <!-- Midground rocks — sit behind foreground bushes for depth -->
+      <div class="mid-rock" style="left:780px;--rw:58px;--rh:34px;"></div>
+      <div class="mid-rock" style="left:1580px;--rw:72px;--rh:40px;"></div>
+      <div class="mid-rock" style="left:2360px;--rw:54px;--rh:30px;"></div>
+      <div class="mid-rock" style="left:3110px;--rw:66px;--rh:38px;"></div>
+      <div class="mid-rock" style="left:3820px;--rw:60px;--rh:34px;"></div>
+      <div class="mid-rock" style="left:5000px;--rw:70px;--rh:40px;"></div>
+
+      <!-- Grass tufts -->
+      <div class="grass-tuft" style="left:320px;"></div>
+      <div class="grass-tuft" style="left:700px;"></div>
+      <div class="grass-tuft" style="left:1200px;"></div>
+      <div class="grass-tuft" style="left:1800px;"></div>
+      <div class="grass-tuft" style="left:2300px;"></div>
+      <div class="grass-tuft" style="left:3000px;"></div>
+      <div class="grass-tuft" style="left:3600px;"></div>
+      <div class="grass-tuft" style="left:4200px;"></div>
+
+    </div><!-- end mid-layer -->
+
+    <!-- ============ LAYER 3: FOREGROUND (closest, fastest parallax) ============ -->
+    <div id="fg-layer">
+      <!-- Dense foreground bushes across entire world width — larger sizes -->
+      <div class="fg-bush" style="left:0px;--bw:220px;--bh:130px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:160px;--bw:170px;--bh:105px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:300px;--bw:250px;--bh:140px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:500px;--bw:190px;--bh:115px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:660px;--bw:230px;--bh:145px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:860px;--bw:170px;--bh:105px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:1000px;--bw:260px;--bh:155px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:1220px;--bw:200px;--bh:120px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:1380px;--bw:175px;--bh:110px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:1520px;--bw:220px;--bh:135px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:1710px;--bw:250px;--bh:150px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:1920px;--bw:185px;--bh:112px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:2070px;--bw:235px;--bh:142px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:2270px;--bw:200px;--bh:120px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:2430px;--bw:260px;--bh:158px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:2650px;--bw:175px;--bh:108px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:2790px;--bw:220px;--bh:133px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:2980px;--bw:245px;--bh:148px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:3190px;--bw:185px;--bh:112px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:3340px;--bw:235px;--bh:142px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:3540px;--bw:175px;--bh:108px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:3680px;--bw:255px;--bh:153px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:3900px;--bw:200px;--bh:122px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:4070px;--bw:170px;--bh:105px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:4210px;--bw:265px;--bh:158px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:4440px;--bw:215px;--bh:130px;--bc:#152e0c;--bm:#224818;"></div>
+      <div class="fg-bush" style="left:4620px;--bw:245px;--bh:148px;--bc:#1a4010;--bm:#2a5a1a;"></div>
+      <div class="fg-bush" style="left:4830px;--bw:200px;--bh:122px;--bc:#152e0c;--bm:#224818;"></div>
+
+      <!-- Foreground flowers scattered -->
+      <div class="fg-flower" style="left:250px;--fc:#f9d46e;"></div>
+      <div class="fg-flower" style="left:550px;--fc:#e05050;"></div>
+      <div class="fg-flower" style="left:950px;--fc:#f9d46e;"></div>
+      <div class="fg-flower" style="left:1350px;--fc:#e05050;"></div>
+      <div class="fg-flower" style="left:1850px;--fc:#f0a0e0;"></div>
+      <div class="fg-flower" style="left:2550px;--fc:#f9d46e;"></div>
+      <div class="fg-flower" style="left:3150px;--fc:#e05050;"></div>
+      <div class="fg-flower" style="left:3750px;--fc:#f0a0e0;"></div>
+      <div class="fg-flower" style="left:4350px;--fc:#f9d46e;"></div>
+
+    </div><!-- end fg-layer -->
+
+  </div><!-- end #world -->
+</div><!-- end #world-wrapper -->
+
+<!-- ========== POPUPS ========== -->
+
+<!-- ABOUT -->
+<div class="popup-overlay" id="popup-about">
+  <div class="popup-box pixel-border">
+    <div class="popup-header">
+      <span class="popup-icon">🏠</span>
+      <h2>About Me</h2>
+      <button class="popup-close" data-target="popup-about">✕</button>
+    </div>
+    <div class="popup-content">
+      <div class="popup-scroll-area">
+        <p class="about-summary">A dedicated and results-driven <strong>BSc (Hons) Computer Science graduate</strong> (1st Class Honours) with strong analytical and problem solving skills looking for a graduate entry role.</p>
+        <p>Confident in <strong>data analysis</strong>, cloud-based data workflows, <strong>AI model optimization</strong> and data integration. Proficient in Python (Django), Java, C#/C++, and more.</p>
+        <p>Extremely eager to learn new things, and highly adaptable to a dynamic workplace.</p>
+        <div class="pixel-divider"></div>
+        <div class="info-grid">
+          <div class="info-item"><span class="info-label">Location</span><span class="info-val">Leeds, UK</span></div>
+          <div class="info-item"><span class="info-label">Degree</span><span class="info-val">1st Class Honours BSc CS</span></div>
+          <div class="info-item"><span class="info-label">Languages</span><span class="info-val">Nepali · Hindi · English</span></div>
+          <div class="info-item"><span class="info-label">Status</span><span class="info-val">Open to Graduate Roles</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="popup-overlay" id="popup-experience">
+  <div class="popup-box pixel-border wide-popup">
+    <div class="popup-header">
+      <span class="popup-icon">⚔️</span>
+      <h2>Work Experience</h2>
+      <button class="popup-close" data-target="popup-experience">✕</button>
+    </div>
+    <div class="popup-content">
+      <div class="popup-scroll-area">
+        <div class="exp-card">
+          <div class="exp-title">Data Annotation</div>
+          <div class="exp-company">Outlier AI</div>
+          <div class="exp-date">November 2025 – Present</div>
+          <ul>
+            <li>Accurately annotate diverse datasets including text, images, videos and audio</li>
+            <li>Conducted quality assurance checks and peer reviews to maintain high standards</li>
+            <li>Identified edge cases and proposed refinements to annotation guidelines</li>
+            <li>Supported development of ethical AI systems through unbiased data labeling</li>
+          </ul>
+        </div>
+        <div class="pixel-divider"></div>
+        <div class="exp-card">
+          <div class="exp-title">Specialist Note Taker & Academic Support Worker</div>
+          <div class="exp-company">Cosmic People</div>
+          <div class="exp-date">September 2025 – Present</div>
+          <ul>
+            <li>Transformed academic content into structured documentation for accessibility needs</li>
+            <li>Completed sighted guide and hearing impairment awareness training</li>
+            <li>Developed communication, collaboration and inclusivity skills</li>
+          </ul>
+        </div>
+        <div class="pixel-divider"></div>
+        <div class="exp-card">
+          <div class="exp-title">Part-Time Retail Assistant</div>
+          <div class="exp-company">Primark</div>
+          <div class="exp-date">September 2025 – Present</div>
+          <ul>
+            <li>Delivering excellent customer service in a fast-paced retail environment</li>
+            <li>Supporting daily store operations and maintaining high presentation standards</li>
+          </ul>
+        </div>
+        <div class="pixel-divider"></div>
+        <div class="exp-card">
+          <div class="exp-title">Digital Marketing Intern</div>
+          <div class="exp-company">Indian Institute of Digital Education</div>
+          <div class="exp-date">September 2023 – March 2024</div>
+          <ul>
+            <li>Trained in SEO, social media marketing, content strategy and analytics</li>
+            <li>Hands-on with Google Analytics, Meta Ads Manager and email marketing platforms</li>
+            <li>Conducted live campaign projects applying data-driven strategies</li>
+            <li>Created optimized digital content aligned with brand objectives</li>
+          </ul>
+        </div>
+        <div class="pixel-divider"></div>
+        <div class="exp-card">
+          <div class="exp-title">Data Analyst & AI Training Assistant</div>
+          <div class="exp-company">Cloud Factory</div>
+          <div class="exp-date">March 2023 – September 2023</div>
+          <ul>
+            <li>Conducted data analysis and entry for AI model training projects</li>
+            <li>Built and validated data pipelines to optimise model accuracy</li>
+            <li>Supported metadata documentation and annotation workflows</li>
+            <li>Collaborated with cross-functional teams to meet performance standards</li>
+            <li>Used open source tools to clean, transform and analyse data</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="popup-overlay" id="popup-education">
+  <div class="popup-box pixel-border wide-popup">
+    <div class="popup-header">
+      <span class="popup-icon">📚</span>
+      <h2>Education</h2>
+      <button class="popup-close" data-target="popup-education">✕</button>
+    </div>
+    <div class="popup-content">
+      <div class="popup-scroll-area">
+        <div class="edu-card">
+          <div class="edu-degree">BSc (Hons) Computer Science — 1st Class Honours</div>
+          <div class="edu-school">Leeds Beckett University, Leeds, United Kingdom</div>
+          <div class="edu-date">September 2022 – June 2025</div>
+          <div class="pixel-divider"></div>
+          <div class="modules-title">Modules Studied:</div>
+          <div class="modules-grid">
+            <span class="module-tag">Computer Systems</span>
+            <span class="module-tag">Linux / CLI</span>
+            <span class="module-tag">Python Programming</span>
+            <span class="module-tag">Object Oriented (Java)</span>
+            <span class="module-tag">Databases (Oracle SQL)</span>
+            <span class="module-tag">Software Systems Dev</span>
+            <span class="module-tag">Operating Systems (C)</span>
+            <span class="module-tag">Network Architectures</span>
+            <span class="module-tag">Applied Machine Learning</span>
+            <span class="module-tag">Digital Security</span>
+            <span class="module-tag">Advanced Software Eng (C#)</span>
+            <span class="module-tag">Cloud Computing (AWS/Azure)</span>
+            <span class="module-tag">Computer Vision (MATLAB)</span>
+            <span class="module-tag">Mobile Apps (Kotlin)</span>
+            <span class="module-tag">Arduino / Embedded</span>
+            <span class="module-tag">Team Project</span>
+          </div>
+        </div>
+        <div class="pixel-divider"></div>
+        <div class="edu-card">
+          <div class="edu-degree">Higher Secondary Certificate (HSC) — 10+2</div>
+          <div class="edu-school">Modern Indian School, Kathmandu, Nepal</div>
+          <div class="edu-date">September 2020 – June 2021</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div class="popup-overlay" id="popup-certifications">
+  <div class="popup-box pixel-border">
+    <div class="popup-header">
+      <span class="popup-icon">🏆</span>
+      <h2>Certifications</h2>
+      <button class="popup-close" data-target="popup-certifications">✕</button>
+    </div>
+    <div class="popup-content">
+      <div class="popup-scroll-area">
+        <div class="cert-card">
+          <div class="cert-icon">☁️</div>
+          <div><div class="cert-name">AWS SageMaker Certification</div><div class="cert-issuer">Amazon Web Services</div></div>
+        </div>
+        <div class="pixel-divider"></div>
+        <div class="cert-card">
+          <div class="cert-icon">📊</div>
+          <div><div class="cert-name">Digital Marketing Certification</div><div class="cert-issuer">Indian Institute of Digital Education</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="popup-overlay" id="popup-skills">
+  <div class="popup-box pixel-border wide-popup">
+    <div class="popup-header">
+      <span class="popup-icon">✨</span>
+      <h2>Skills & Spells</h2>
+      <button class="popup-close" data-target="popup-skills">✕</button>
+    </div>
+    <div class="popup-content">
+      <div class="popup-scroll-area">
+        <div class="skill-category">
+          <div class="skill-cat-title">Technical Skills</div>
+          <div class="skill-bars">
+            <div class="skill-bar-row"><span class="skill-name">Python (Django)</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+            <div class="skill-bar-row"><span class="skill-name">Java</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+            <div class="skill-bar-row"><span class="skill-name">C# / C++</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+            <div class="skill-bar-row"><span class="skill-name">Cloud (AWS/Azure)</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+            <div class="skill-bar-row"><span class="skill-name">Data Analysis</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+            <div class="skill-bar-row"><span class="skill-name">Machine Learning (R)</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+            <div class="skill-bar-row"><span class="skill-name">SQL / Databases</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+            <div class="skill-bar-row"><span class="skill-name">MATLAB</span><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div></div>
+            <div class="skill-bar-row"><span class="skill-name">Kotlin (Android)</span><div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div></div>
+          </div>
+        </div>
+        <div class="pixel-divider"></div>
+        <div class="skill-category">
+          <div class="skill-cat-title">Soft Skills</div>
+          <div class="soft-skills-grid">
+            <div class="soft-skill-tag">Team Working</div>
+            <div class="soft-skill-tag">Analytical Thinking</div>
+            <div class="soft-skill-tag">Problem Solving</div>
+            <div class="soft-skill-tag">Communication</div>
+            <div class="soft-skill-tag">Collaboration</div>
+            <div class="soft-skill-tag">Adaptability</div>
+          </div>
+        </div>
+        <div class="pixel-divider"></div>
+        <div class="skill-category">
+          <div class="skill-cat-title">Languages</div>
+          <div class="soft-skills-grid">
+            <div class="soft-skill-tag lang">Nepali — Native</div>
+            <div class="soft-skill-tag lang">Hindi — Native</div>
+            <div class="soft-skill-tag lang">English — Fluent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="popup-overlay" id="popup-projects">
+  <div class="popup-box pixel-border wide-popup">
+    <div class="popup-header">
+      <span class="popup-icon">🗺️</span>
+      <h2>Projects & Quests</h2>
+      <button class="popup-close" data-target="popup-projects">✕</button>
+    </div>
+    <div class="popup-content">
+      <div class="popup-scroll-area">
+        <div class="project-card">
+          <div class="project-title">Applied Machine Learning — R Studio</div>
+          <div class="project-tags"><span class="ptag">R</span><span class="ptag">ML</span><span class="ptag">Data Science</span></div>
+          <ul>
+            <li>Built predictive models for probability estimation, classification and regression</li>
+            <li>Cleaned and structured raw data; performed EDA and visualization</li>
+            <li>Evaluated performance using accuracy metrics, confusion matrices and cross validation</li>
+          </ul>
+        </div>
+        <div class="pixel-divider"></div>
+        <div class="project-card">
+          <div class="project-title">Cloud Computing — AWS Elastic Beanstalk</div>
+          <div class="project-tags"><span class="ptag">AWS</span><span class="ptag">EC2</span><span class="ptag">RDS</span><span class="ptag">S3</span></div>
+          <ul>
+            <li>Designed and deployed cloud-hosted analytical services using AWS Elastic Beanstalk, EC2, RDS and S3</li>
+            <li>Configured environments and pipelines for data migration, monitoring and scalability</li>
+            <li>Produced documentation on data flow, reliability testing and governance compliance</li>
+          </ul>
+        </div>
+        <div class="pixel-divider"></div>
+        <div class="project-card">
+          <div class="project-title">Embedded Vision & Intelligent Systems — MATLAB</div>
+          <div class="project-tags"><span class="ptag">MATLAB</span><span class="ptag">Computer Vision</span><span class="ptag">Image Processing</span></div>
+          <ul>
+            <li>Processed and analysed image/video datasets applying filtering, segmentation and motion tracking</li>
+            <li>Developed structured data workflows and reports using MATLAB scripts and visualization tools</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="popup-overlay" id="popup-contact">
+  <div class="popup-box pixel-border">
+    <div class="popup-header">
+      <span class="popup-icon">📬</span>
+      <h2>Send a Message</h2>
+      <button class="popup-close" data-target="popup-contact">✕</button>
+    </div>
+    <div class="popup-content">
+      <div class="popup-scroll-area">
+        <p class="contact-intro">The messenger pigeon is ready. Send your scroll!</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <span class="contact-label">Email</span>
+            <span class="contact-val">s.subbadongol@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📱</span>
+            <span class="contact-label">Phone</span>
+            <span class="contact-val">07438569073</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <span class="contact-label">Location</span>
+            <span class="contact-val">Leeds, United Kingdom</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
